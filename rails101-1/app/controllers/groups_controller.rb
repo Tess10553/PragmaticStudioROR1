@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-before_action :authenticate_user!, only: [:new, :edit, :create. :update, :destroy]
+before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -16,11 +16,11 @@ before_action :authenticate_user!, only: [:new, :edit, :create. :update, :destro
   end
 
 def edit
-  @group = Group.find(params[:id])
+  @group = current_user.groups.find(params[:id])
 end
 
 def update
-  @group = Group.find(params[:id])
+  @group = current_user.groups.find(params[:id])
 
   if @group.update(group_params)
     redirect_to group_path, notice: "修改討論版成功"
@@ -30,13 +30,13 @@ def update
 end
 
 def destroy
-  @group = Group.find(params[:id])
+  @group = current_user.groups.find(params[:id])
   @group.destroy
   redirect_to groups_path, alert: "討論版已刪除"
 end
 
 def create
-  @group = Group.new(group_params)
+  @group = current_user.groups.find(group_params)
 
   if @group.save
     redirect_to groups_path
