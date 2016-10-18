@@ -1,70 +1,36 @@
-class Animal
-end
+class Player
+  attr_reader :score
+  attr_accessor :name
 
-#??
-class Dog < Animal
-
-  def initialize(name)
-    @name = name
-    end
-end
-
-class Cat < Animal
-  def initialize(name)
-    @name = name
+  def initialize(name, score = 100)
+    @name = name.capitalize
+    @score = score
   end
-end
 
-class Person
-  def initialize(name)
-    @name = name
+  def health
+    @score + @name.length
   end
-  ##Peron has -a pet of some name
-  @pet = nil
-  attr_accessor :pet
-end
 
-class Employee < Person
-  def initialize(name,salart)
-    super(name)
-    @salary = salary
+
+  def to_s
+     "I am #{@name} with a health of #{@score} and a score of #{health}. "
   end
+
+
+
 end
 
-## ??
-class Fish
-end
 
-class Salmon < Fish
-end
+player1 = Player.new("moe")
+player2 = Player.new("larry", 60)
+player3 = Player.new("curly", 125)
 
-class Halibut < Fish
-end
+players = [player1, player2, player3]
 
-## rover is -a Dog
+puts "There are #{players.size} players in the game:"
 
-rover = Dog.new("Rover")
+players.each do |player|
+  puts player
+  end
 
-##satan is a cat
-satan = Cat.new("Satan")
-
-## mary is a person
-mary = Person.new("Mary")
-
-## ??
-mary.pet = satan
-
-##??
-frank = Employee.new("Frank", 1200000)
-
-##??
-frank.pet = rover
-##??
-flipper = Fish.new()
-
-##??
-crouse = Salmon.new()
-
-##??
-harry = Halibut.new()
 

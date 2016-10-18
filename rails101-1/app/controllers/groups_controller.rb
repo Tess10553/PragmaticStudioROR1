@@ -36,7 +36,7 @@ def destroy
 end
 
 def create
-  @group = current_user.groups.find(group_params)
+  @group = current_user.groups.new(group_params)
 
   if @group.save
     redirect_to groups_path

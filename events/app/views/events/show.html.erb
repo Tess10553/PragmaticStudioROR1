@@ -1,0 +1,33 @@
+<article>
+  <header>
+  <%= image_for(@event) %>
+    <h1><%= @event.name %></h1>
+  </header>
+  <p>
+    <%= @event.description %>
+  </p>
+  <h3>When</h3>
+  <p>
+    <%= @event.starts_at %>
+  </p>
+  <h3>Where</h3>
+  <p>
+    <%= @event.location %>
+  </p>
+  <h3>Price</h3>
+  <p>
+    <%= format_price(@event) %>
+  </p>
+</article>
+
+<%= link_to "Who's registrated?", event_registrations_path(@event) %>
+<footer>
+<%= link_to "Register!", new_event_registration_path(@event), class: "button ok register" %>
+  <nav>
+<%= link_to "Edit It", edit_event_path(@event), class: 'button' %> |
+<%= link_to 'Delete', @event,
+                    class: 'button',
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+  </nav>
+</footer>
